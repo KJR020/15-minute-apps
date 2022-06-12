@@ -48,8 +48,8 @@ class MainWindow(QMainWindow):
         self.browser = QWebEngineView()
         self.browser.setUrl(QUrl("https://google.com"))
 
-        # self.browser.urlChanged.connect(self.update_urlbar)
-        # self.browser.loadFinished.connect(self.update_title)
+        self.browser.urlChanged.connect(self.update_urlbar)
+        self.browser.loadFinished.connect(self.update_title)
         self.setCentralWidget(self.browser)
 
         self.status = QStatusBar()
@@ -89,7 +89,7 @@ class MainWindow(QMainWindow):
         navtb.addWidget(self.httpsicon)
 
         self.urlbar = QLineEdit()
-        # self.urlbar.returnPressed.connect(self.navigate_to_url)
+        self.urlbar.returnPressed.connect(self.navigate_to_url)
         navtb.addWidget(self.urlbar)
 
         stop_btn = QAction(
@@ -105,21 +105,21 @@ class MainWindow(QMainWindow):
             QIcon(os.path.join("images", "disk--arrow.png")), "Open file...", self
         )
         open_file_action.setStatusTip("Open from file")
-        # open_file_action.triggered.connect(self.open_file)
+        open_file_action.triggered.connect(self.open_file)
         file_menu.addAction(open_file_action)
 
         save_file_action = QAction(
             QIcon(os.path.join("images", "disk--pencil.png")), "Save Page As...", self
         )
         save_file_action.setStatusTip("Save current page to file")
-        # save_file_action.triggered.connect(self.save_file)
+        save_file_action.triggered.connect(self.save_file)
         file_menu.addAction(save_file_action)
 
         print_action = QAction(
             QIcon(os.path.join("images", "printer.png")), "Print...", self
         )
         print_action.setStatusTip("Print current page")
-        # print_action.triggered.connect(self.print_page)
+        print_action.triggered.connect(self.print_page)
         file_menu.addAction(print_action)
 
         help_menu = self.menuBar().addMenu("&Help")
@@ -135,7 +135,7 @@ class MainWindow(QMainWindow):
             QIcon(os.path.join("images", "lifebuoy.png")), "MooseAche Homepage", self
         )
         navigate_mozarella_action.setStatusTip("Go to MooseAche Homepage")
-        # navigate_mozarella_action.triggered.connect(self.navigate_mozarella)
+        navigate_mozarella_action.triggered.connect(self.navigate_mozarella)
         help_menu.addAction(navigate_mozarella_action)
 
         self.show()
